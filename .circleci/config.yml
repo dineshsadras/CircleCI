@@ -34,7 +34,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: "Say hello"
+          name: "print hello"
           command: "cat output.txt"
 
 # Orchestrate jobs using workflows
