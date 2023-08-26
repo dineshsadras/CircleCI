@@ -13,12 +13,9 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo "text to output here" > output.txt"
+      - run: echo "hello world" > ~/output.txt
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: ~/
           paths:
             - output.txt
 
@@ -32,10 +29,8 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: "print hello"
-          command: "cat output.txt"
+          at: ~/
+      - run: cat output.txt
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
