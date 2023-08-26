@@ -53,6 +53,6 @@ workflows:
       - say-world:
           requires:
             - say-hello
-        - say-name:
+      - say-name:
           requires:
             - say-world
