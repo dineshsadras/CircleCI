@@ -39,6 +39,6 @@ workflows:
     jobs:
       - say-hello
       - print_output_file
-          requires:
-            - say-hello
+         requires:
+          - say-hello
 
