@@ -24,7 +24,9 @@ jobs:
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - print_pipeline_id1
-      - run: echo "Hello Error!"
+      - run:
+          name: on error
+          command: echo "Hello Error!"
           when: on_fail
 
 # Orchestrate jobs using workflows
