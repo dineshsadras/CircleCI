@@ -2,20 +2,10 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-commands:
-  print_pipeline_id:
-    description: "A very simple command for demonstration purposes"
-    parameters:
-      to:
-        type: string
-        default: $CIRCLE_WORKFLOW_ID
-    steps:
-      - run: echo $CIRCLE_WORKFLOW_ID
-
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  print_workflow_id:
+  say-hello:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
@@ -23,15 +13,14 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
-      - print_pipeline_id1
+      - checkout
       - run:
-          name: on error
-          command: echo "Hello Error!"
-          when: on_fail
+          name: "Say hello"
+          command: "echo Hello, World!"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - print_workflow_id
+      - say-hello
