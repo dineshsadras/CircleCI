@@ -21,9 +21,26 @@ jobs:
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
 
+  configure_infrastructure: 
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["1b:e4:14:35:bd:7d:e7:ae:2a:5c:36:59:22:d5:3f:d4"] 
+      - run:
+          name: Install Ansible
+          command: |
+            apk add --update ansible
+      - run:
+          name: Run Playbook and Configure server
+          command: |
+            ansible-playbook -i inventory main-remote.yml
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - create_infrastructure
+      - configure_infrastructure
