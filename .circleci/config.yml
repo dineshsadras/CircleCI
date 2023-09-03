@@ -55,11 +55,12 @@ jobs:
     steps:
       - run: apk add --update curl
       - run:
-      - run:
           name: Test job
           # Fail the job intentionally to simulate an error.
           command:  return 1
       - destroy_environment 
+
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
